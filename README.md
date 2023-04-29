@@ -103,7 +103,7 @@ python manage.py runserver
 
 If run successfully: 
 
-![starting backend successfully](.\README Figures\starting backend successfully.png)
+![starting backend successfully](.\README_figures\starting backend successfully.png)
 
 Start the frontend of the visualization tool.
 
@@ -115,6 +115,6 @@ npm run serve
 
 If run successfully:
 
-![starting frontend successfully](.\README Figures\starting frontend successfully.png)
+![starting frontend successfully](.\README_figures\starting frontend successfully.png)
 
 Open the local URL to use the visualization tool. 
