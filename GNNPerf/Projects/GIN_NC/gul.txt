@@ -1,0 +1,23 @@
+NodeFunc utils_ApplyNodeFunc(nn);
+
+class Model {
+    GINConv conv1, conv2, conv3;
+    ReLU relu1;
+    LeakyReLU relu2;
+
+    void __init__(int in_dim, int out_dim) {
+        super();
+        conv1 = GINConv(utils_ApplyNodeFunc(Linear(in_dim, 32)), 0, false);
+        conv2 = GINConv(utils_ApplyNodeFunc(Linear(32, 16)), 0, false);
+        conv3 = GINConv(utils_ApplyNodeFunc(Linear(16, out_dim)), 0, false);
+        relu1 = ReLU();
+        relu2 = LeakyReLU(0.5);
+    }
+
+    tensor forward(Graph g, tensor h) {
+        h = relu1.forward(conv1.forward(g, h));
+        h = relu1.forward(conv2.forward(g, h));
+        h = relu2.forward(conv3.forward(g, h));
+        return h;
+    }
+};

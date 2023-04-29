@@ -1,0 +1,24 @@
+class Model {
+    GATConv conv1, conv2, conv3, conv4;
+    int num_hidden;
+    double attn_drop, negative_slope;
+
+    void __init__(int in_dim, int out_dim) {
+        super();
+        num_hidden = 16;
+        attn_drop = 0.6;
+        negative_slope = 0.1;
+        conv1 = GATConv(in_dim, num_hidden, 8, attn_drop, negative_slope);
+        conv2 = GATConv(num_hidden*8, num_hidden, 6, attn_drop, negative_slope);
+        conv3 = GATConv(num_hidden*6, num_hidden, 4, attn_drop, negative_slope);
+        conv4 = GATConv(num_hidden*4, out_dim, 2, attn_drop, negative_slope);
+    }
+
+    tensor forward(Graph g, tensor h) {
+        h = conv1.forward(g, h).flatten(1);
+        h = conv2.forward(g, h).flatten(1);
+        h = conv3.forward(g, h).flatten(1);
+        h = conv4.forward(g, h).flatten(1);
+        return h;
+    }
+};

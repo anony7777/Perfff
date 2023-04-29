@@ -1,0 +1,25 @@
+class Model {
+    SAGEConv conv1, conv2, conv3;
+    ReLU relu1;
+    LeakyReLU relu2;
+    Dropout dropout;
+
+    void __init__(int in_dim, int out_dim) {
+        super();
+        conv1 = SAGEConv(in_dim, 32);
+        conv2 = SAGEConv(32, 16, "max", true);
+        conv3 = SAGEConv(16, out_dim, "mean", false);
+        relu1 = ReLU();
+        relu2 = LeakyReLU(0.5);
+        dropout = Dropout(0.2);
+    }
+
+    tensor forward(Graph g, tensor h) {
+        h = relu1.forward(conv1.forward(g, h));
+        h = dropout.forward(h);
+        h = relu1.forward(conv2.forward(g, h));
+        h = dropout.forward(h);
+        h = relu2.forward(conv3.forward(g, h));
+        return h;
+    }
+};

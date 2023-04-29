@@ -1,0 +1,28 @@
+class Model {
+    GATConv conv1, conv2, conv3;
+    ReLU relu;
+    Dropout dropout;
+    int num_hidden;
+    float attn_drop, negative_slope;
+
+    void __init__(int in_dim, int out_dim) {
+        super();
+        num_hidden = 16;
+        attn_drop = 0.6;
+        negative_slope = 0.1;
+        conv1 = GATConv(in_dim, num_hidden, 8, attn_drop, negative_slope);
+        conv2 = GATConv(num_hidden*8, num_hidden, 4, attn_drop, negative_slope);
+        conv3 = GATConv(num_hidden*4, out_dim, 2, attn_drop, negative_slope);
+        relu = ReLU();
+        dropout = Dropout(0.5);
+    }
+
+    tensor forward(Graph g, tensor h) {
+        h = relu.forward(conv1.forward(g, h).flatten(1));
+        h = dropout.forward(h);
+        h = relu.forward(conv2.forward(g, h).flatten(1));
+        h = dropout.forward(h);
+        h = relu.forward(conv3.forward(g, h).flatten(1));
+        return h;
+    }
+};

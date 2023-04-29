@@ -1,0 +1,31 @@
+class Model {
+      GCNConv conv1, conv2, conv3;
+      Linear linear;
+      ReLU relu;
+      Dropout dropout;
+      int hidden_dim;
+
+    void __init__(int in_dim, int out_dim) {
+        super();
+        hidden_dim = 64;
+        conv1 = GCNConv(in_dim, hidden_dim, true, false);
+        conv2 = GCNConv(hidden_dim, hidden_dim, true, false);
+        conv3 = GCNConv(hidden_dim, hidden_dim);
+        linear = Linear(hidden_dim, out_dim);
+        relu = ReLU();
+        dropout = Dropout(0.5);
+    }
+
+    tensor forward(Graph g, tensor h) {
+        h = relu.forward(conv1.forward(g, h));
+        h = relu.forward(conv2.forward(g, h));
+        h = relu.forward(conv3.forward(g, h));
+
+        //Readout layer
+        h = Readout_nodes(g, h);
+
+        h = dropout.forward(h);
+        h = linear.forward(h);
+        return h;
+    }
+};

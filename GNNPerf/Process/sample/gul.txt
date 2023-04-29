@@ -1,0 +1,12 @@
+class Model {
+    
+
+    void __init__(int in_dim, int out_dim) {
+        
+    }
+
+    tensor forward(Graph g, tensor h) {
+        
+        return h;
+    }
+};
