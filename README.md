@@ -15,7 +15,6 @@
 	|-- frontend
 	|-- myproject
 	|-- Process
-		|-- datasets
 		|-- compile.sh
 		|-- execute.sh
 		|-- support.h
@@ -60,6 +59,30 @@ cmake -DLLVM_ENABLE_PROJECTS=clang -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles
 make clang
 cd ..
 ./compile.sh
+```
+
+## Download Datasets
+
+The datasets used in the experiments can be downloaded from https://drive.google.com/drive/folders/1lCzXHwIA9B3wMaJZ7dKiBJoayTIIGI0z?usp=sharing. 
+
+Download the datasets and put it into the directory `GNNPerf/Process/datasets` as follows: 
+
+```sh
+`-- GNNPerf
+	|-- Process
+		|-- datasets
+			|-- dgl_data
+			|-- pyg_data
+			|-- arxiv.graph
+			|-- collab.graph
+			|-- data_loader.py
+			|-- DD.graph
+			|-- ddi.graph
+			|-- ppa.graph
+			|-- ppi.graph
+			|-- protein.graph
+			|-- pubmed.graph
+			|-- reddit.dgl.graph
 ```
 
 ## How to reproduce our results 
