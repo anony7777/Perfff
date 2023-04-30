@@ -89,7 +89,7 @@ We conduct the experiments on a platform consisting of two Intel E5-2680 v4 CPUs
 
 The original GUL codes used in the experiments are in GNNPerf/Projects, including `test_GAT_NC`, `test_GCN_NC`, `test_GIN_NC`, and `test_SAGE_NC`. And the auto-test scripts are `GNNPerf/Process/Test_paper_fullgraph.sh` and `GNNPerf/Process/Test_paper_minibatch.sh`. 
 
-Use either the scripts or the visualization tool to reproduce our results and see the results with the visualization tool. 
+You can either run the scripts or use the visualization tool to replicate our results and view them with the visualization tool. 
 
 #### Use the scripts
 
@@ -139,3 +139,11 @@ If run successfully:
 ![starting frontend successfully](./README_figures/starting_frontend_successfully.png)
 
 Open the local URL to use the visualization tool. 
+
+![edit_gul](./README_figures/edit_gul.png)
+
+![train_setting](./README_figures/train_setting.png)
+
+![running_cmd](./README_figures/running_cmd.png)
+
+![visualization_of_results](./README_figures/visualization_of_results.png)
