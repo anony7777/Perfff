@@ -5,7 +5,7 @@
 |-- llvm-project
 	|-- compile.sh
 	`-- clang
-		|-- tools
+		`-- tools
 			|-- CMakeLists.txt
 			`-- code-transformer
 				|-- code-transformer.cpp
